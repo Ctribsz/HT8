@@ -1,21 +1,26 @@
 package HT8;
+
 import java.util.Vector;
+/*
+ * 
+ * Extraida del libro de JavaStructures Data Structures for the PrincipledProgrammer PAGINA 325-327
+ */
 
-public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
+public class VectorHeap<procesos extends Comparable<procesos>> implements PriorityQueue<procesos> {
 
-    protected Vector<E> data; // the data, kept in heap order
+    protected Vector<procesos> data; // the data, kept in heap order
 
     public VectorHeap()
     // post: constructs a new priority queue
     {
-        data = new Vector<E>();
+        data = new Vector<procesos>();
     }
 
-    public VectorHeap(Vector<E> v)
+    public VectorHeap(Vector<procesos> v)
     // post: constructs a new priority queue from an unordered vector
     {
         int i;
-        data = new Vector<E>(v.size()); // we know ultimate size
+        data = new Vector<procesos>(v.size()); // we know ultimate size
         for (i = 0; i < v.size(); i++) { // add elements to heap
             add(v.get(i));
         }
@@ -47,7 +52,7 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     // post: moves node at index leaf up to appropriate position
     {
         int parent = parent(leaf);
-        E value = data.get(leaf);
+        procesos value = data.get(leaf);
         while (leaf > 0 &&
                 (value.compareTo(data.get(parent)) < 0)) {
             data.set(leaf, data.get(parent));
@@ -71,7 +76,7 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     // to appropriate position in subtree
     {
         int heapSize = data.size();
-        E value = data.get(root);
+        procesos value = data.get(root);
         while (root < heapSize) {
             int childpos = left(root);
             if (childpos < heapSize) {
@@ -94,17 +99,19 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
         }
     }
 
-    public E remove()
-	// pre: !isEmpty()
-	// post: returns and removes minimum value from queue
-	{
-		E minVal = getFirst();
-		data.set(0,data.get(data.size()-1));
-		data.setSize(data.size()-1);
-		if (data.size() > 1) pushDownRoot(0);
-		return minVal;
-	}
+    public procesos remove()
+    // pre: !isEmpty()
+    // post: returns and removes minimum value from queue
+    {
+        E minVal = getFirst();
+        data.set(0, data.get(data.size() - 1));
+        data.setSize(data.size() - 1);
+        if (data.size() > 1)
+            pushDownRoot(0);
+        return minVal;
+    }
 
     private E getFirst() {
         return null;
     }
+}
