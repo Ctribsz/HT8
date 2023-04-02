@@ -43,7 +43,7 @@ public class VectorHeap {
     // pre: 0 <= i < size
     // post: returns index of right child of node at location i
     {
-        return 2 * (i + 1);
+        return (2 * i + 1) + 1;
     }
 
     protected void percolateUp(int leaf)
@@ -51,13 +51,14 @@ public class VectorHeap {
     // post: moves node at index leaf up to appropriate position
     {
         int parent = parent(leaf);
-        procesos priority = data.get(leaf);
-        while (leaf > 0 && (priority.getPrioridad().compareTo(data.get(parent).getPrioridad()) < 0)) {
+        procesos value = data.get(leaf);
+        while (leaf > 0 &&
+                (value.compareTo(data.get(parent)) < 0)) {
             data.set(leaf, data.get(parent));
             leaf = parent;
             parent = parent(leaf);
         }
-        data.set(leaf, priority);
+        data.set(leaf, value);
     }
 
     public void add(procesos value)
@@ -78,10 +79,10 @@ public class VectorHeap {
         while (root < heapSize) {
             int childpos = left(root);
             if (childpos < heapSize) {
-                if ((right(root) < heapSize)
-                        && ((data.get(childpos + 1)).getPrioridad().compareTo(data.get(childpos).getPrioridad()) < 0))
+                if ((right(root) < heapSize) &&
+                        ((data.get(childpos + 1)).compareTo(data.get(childpos)) < 0)) {
                     childpos++;
-
+                }
                 // Assert: childpos indexes smaller of two children
                 if ((data.get(childpos)).compareTo(value) < 0) {
                     data.set(root, data.get(childpos));
@@ -97,10 +98,11 @@ public class VectorHeap {
         }
     }
 
-    public procesos remove() {
-        // pre: !isEmpty()
-        // post: returns and removes minimum value from queue
-        procesos minVal = data.firstElement();
+    public procesos remove()
+    // pre: !isEmpty()
+    // post: returns and removes minimum value from queue
+    {
+        procesos minVal = getFirst();
         data.set(0, data.get(data.size() - 1));
         data.setSize(data.size() - 1);
         if (data.size() > 1)
@@ -108,4 +110,7 @@ public class VectorHeap {
         return minVal;
     }
 
+    private procesos getFirst() {
+        return null;
+    }
 }
