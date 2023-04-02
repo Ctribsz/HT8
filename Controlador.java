@@ -56,6 +56,9 @@ public class Controlador {
                 procesos p = new procesos();
                 p.setName(l[0] + "," + l[1]);
                 p.setPrioridad(l[2]);
+                int NI = Integer.parseInt(l[2].trim());
+                int nuevoValor = NI + 120;
+                l[2] = Integer.toString(nuevoValor);
                 lista.add(p);
             }
 
