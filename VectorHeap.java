@@ -1,12 +1,11 @@
-package HT8;
-
+import java.util.ArrayList;
 import java.util.Vector;
 /*
  * 
  * Extraida del libro de JavaStructures Data Structures for the PrincipledProgrammer PAGINA 325-327
  */
 
-public class VectorHeap<procesos extends Comparable<procesos>> implements PriorityQueue<procesos> {
+public class VectorHeap {
 
     protected Vector<procesos> data; // the data, kept in heap order
 
@@ -16,7 +15,7 @@ public class VectorHeap<procesos extends Comparable<procesos>> implements Priori
         data = new Vector<procesos>();
     }
 
-    public VectorHeap(Vector<procesos> v)
+    public VectorHeap(ArrayList<procesos> v)
     // post: constructs a new priority queue from an unordered vector
     {
         int i;
@@ -62,7 +61,7 @@ public class VectorHeap<procesos extends Comparable<procesos>> implements Priori
         data.set(leaf, value);
     }
 
-    public void add(E value)
+    public void add(procesos value)
     // pre: value is non-null comparable
     // post: value is added to priority queue
     {
@@ -103,7 +102,7 @@ public class VectorHeap<procesos extends Comparable<procesos>> implements Priori
     // pre: !isEmpty()
     // post: returns and removes minimum value from queue
     {
-        E minVal = getFirst();
+        procesos minVal = getFirst();
         data.set(0, data.get(data.size() - 1));
         data.setSize(data.size() - 1);
         if (data.size() > 1)
@@ -111,7 +110,7 @@ public class VectorHeap<procesos extends Comparable<procesos>> implements Priori
         return minVal;
     }
 
-    private E getFirst() {
+    private procesos getFirst() {
         return null;
     }
 }
