@@ -43,7 +43,7 @@ public class VectorHeap {
     // pre: 0 <= i < size
     // post: returns index of right child of node at location i
     {
-        return (2 * i + 1) + 1;
+        return 2 * (i + 1) + 1;
     }
 
     protected void percolateUp(int leaf)
@@ -98,11 +98,10 @@ public class VectorHeap {
         }
     }
 
-    public procesos remove()
-    // pre: !isEmpty()
-    // post: returns and removes minimum value from queue
-    {
-        procesos minVal = getFirst();
+    public procesos remove() {
+        // pre: !isEmpty()
+        // post: returns and removes minimum value from queue
+        procesos minVal = data.firstElement();
         data.set(0, data.get(data.size() - 1));
         data.setSize(data.size() - 1);
         if (data.size() > 1)
@@ -110,7 +109,4 @@ public class VectorHeap {
         return minVal;
     }
 
-    private procesos getFirst() {
-        return null;
-    }
 }
